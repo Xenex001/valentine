@@ -38,7 +38,7 @@ yesButton.addEventListener("click", () => {
       text-align:center;
     ">
       <h1 style="color:#e6005c;">YAYYYY 💕🥰</h1>
-      <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjE5dGp4c29xb3JzNWxpM3J1eDg1andnempjbjE0Mng5M3liMWtzYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OWCdX4sTNt1frLfydK/giphy.gif" style="max-width:300px;">
+      <img src="https://media.tenor.com/UFLqRF9t2rwAAAAi/peach-goma-peach-and-goma.gif" style="width:80%; max-width:400px; height:auto;">
     </div>
   `;
 });
