@@ -1,14 +1,26 @@
 const noButton = document.getElementById("no");
 const yesButton = document.getElementById("yes");
 
-// Make "No" button run away when hovered
-noButton.addEventListener("mouseover", () => {
-  const x = Math.random() * 200 - 100;
-  const y = Math.random() * 200 - 100;
-  noButton.style.transform = `translate(${x}px, ${y}px)`;
-});
+// Detect if device is mobile
+const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 480;
 
-// "Yes" button click
+// Desktop behavior: "No" button runs away
+if (!isMobile) {
+  noButton.addEventListener("mouseover", () => {
+    const x = Math.random() * 200 - 100; // random shift
+    const y = Math.random() * 200 - 100;
+    noButton.style.transform = `translate(${x}px, ${y}px)`;
+  });
+} else {
+  // Mobile behavior: "Yes" button grows bigger each tap
+  let scale = 1; // initial size
+  noButton.addEventListener("click", () => {
+    scale += 0.2; // increase size
+    yesButton.style.transform = `scale(${scale})`;
+  });
+}
+
+// "Yes" button click - same for all devices
 yesButton.addEventListener("click", () => {
   document.body.innerHTML = `
     <div style="
