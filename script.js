@@ -4,23 +4,27 @@ const yesButton = document.getElementById("yes");
 // Detect if device is mobile
 const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 480;
 
-// Desktop behavior: "No" button runs away
-if (!isMobile) {
-  noButton.addEventListener("mouseover", () => {
-    const x = Math.random() * 200 - 100; // random shift
-    const y = Math.random() * 200 - 100;
-    noButton.style.transform = `translate(${x}px, ${y}px)`;
-  });
-} else {
-  // Mobile behavior: "Yes" button grows bigger each tap
+if (isMobile) {
+  // Mobile: clicking "No" makes "Yes" grow
   let scale = 1; // initial size
   noButton.addEventListener("click", () => {
     scale += 0.2; // increase size
     yesButton.style.transform = `scale(${scale})`;
+    yesButton.style.transition = "transform 0.3s"; // smooth growth
+  });
+
+  // Remove any desktop hover behavior on Mobile
+  noButton.onmouseover = null;
+} else {
+  // Desktop: "No" button runs away
+  noButton.addEventListener("mouseover", () => {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 200 - 100;
+    noButton.style.transform = `translate(${x}px, ${y}px)`;
   });
 }
 
-// "Yes" button click - same for all devices
+// "Yes" button click for all devices
 yesButton.addEventListener("click", () => {
   document.body.innerHTML = `
     <div style="
